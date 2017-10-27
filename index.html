@@ -1,0 +1,144 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>imageCategory</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style-index.css">
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="pull-right" style="margin-right: 30px">
+	  		<p style="color:#fff;line-height:40px;display:inline-block;" >Welcome Alva!</p> -->
+	  		<a style="display: inline-block;" href="login.html">logout</a>
+  		</div>
+	</nav>
+	<div class="container">
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th name="fileName">File Name</th>
+		      <th name="description">Description</th>
+		      <th name="preview">Preview</th>
+		      <th>
+		      	Command
+		      	<button id="btn-addImg" type="button" class="btn btn-secondary btn-index" onclick="clearAddModal()">
+		      		<span class="glyphicon glyphicon-plus"></span>
+		      	</button>
+		      </th>
+		    </tr>
+		  </thead>
+		  <tbody id="index-content">
+		  </tbody>
+		</table>
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog" class='modal-panel' role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			         <form>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">Image(base64)</label>
+					      <div class="col-sm-10">
+					        <input id="input-addImg" class="form-control" type="file" >
+					      </div>
+					    </div>
+					    <div class="form-group row">
+					    	<label class="col-sm-2 col-form-label"></label>
+					     	<div class="col-sm-10">
+					        	<textarea id="textarea-addImg" class="form-control modal-textarea"></textarea>
+					     	</div>
+					    </div>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">File Name</label>
+					      <div class="col-sm-10">
+					        <input id="input-addFile" type="text" class="form-control" placeholder="File Name">
+					      </div>
+					    </div>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">Description</label>
+					      <div class="col-sm-10">
+					        <input id="input-addDescription" type="text" class="form-control" placeholder="Description">
+					      </div>
+					    </div>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">Image Preview</label>
+					      <div class="col-sm-10">
+					        <img id="img-addPreview" class="modal-preview" src="./images/icon-preview.png">
+					      </div>
+					    </div>
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			      	<p class="modal-footer-errormes"></p>
+			        <button id="btn-addSave" type="button" class="btn btn-primary">Save</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+			      </div>
+			    </div>
+		  	</div>
+		</div>
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog" class='modal-panel' role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Edit Image</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			         <form>
+			         	 <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">Image(base64)</label>
+					      <div class="col-sm-10">
+					        <input id="input-editImg" class="form-control" type="file" >
+					      </div>
+					    </div>
+					    <div class="form-group row">
+					    	<label class="col-sm-2 col-form-label"></label>
+					     	<div class="col-sm-10">
+					        	<textarea id="textarea-editImg" class="form-control modal-textarea"></textarea>
+					     	</div>
+					    </div>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">File Name</label>
+					      <div class="col-sm-10">
+					        <input id="input-editFile" readonly type="text" class="form-control" placeholder="File Name">
+					      </div>
+					    </div>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">Descrption</label>
+					      <div class="col-sm-10">
+					        <input id="input-editDescription" type="text" class="form-control" placeholder="Descrption">
+					      </div>
+					    </div>
+					    <div class="form-group row">
+					      <label class="col-sm-2 col-form-label">Image Preview</label>
+					      <div class="col-sm-10">
+					        <img id="img-editPreview" class="modal-preview" src="./images/icon-preview.png">
+					      </div>
+					    </div>
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			      	<p class="modal-footer-errormes"></p>
+			        <button id="btn-editSave" type="button" class="btn btn-primary">Save</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+			      </div>
+			    </div>
+		  	</div>
+		</div>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="javascript/libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="javascript/helper.js"></script>
+<script type="text/javascript" src="javascript/core.js"></script>
+<script type="text/javascript" src="javascript/imageCategoryModel.js"></script>
+<script type="text/javascript" src="javascript/imageCategoryController.js"></script>
+</html>
